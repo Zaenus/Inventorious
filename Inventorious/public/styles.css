@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+section {
+    margin-bottom: 20px;
+}
+form {
+    display: flex;
+    gap: 10px;
+}
+input, select, button {
+    padding: 8px;
+}
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #218838;
+}
+.search-container {
+    position: relative;
+    width: 200px;
+}
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    max-height: 200px;
+    overflow-y: auto;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 10;
+    display: none;
+}
+.search-results li {
+    padding: 8px;
+    cursor: pointer;
+}
+.search-results li:hover {
+    background-color: #f1f1f1;
+}
+#inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+#inventory-table th, #inventory-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+#inventory-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+#inventory-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+#inventory-table tr:hover {
+    background-color: #f1f1f1;
+}

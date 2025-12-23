@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Reports</title>
+    <link rel="stylesheet" href="reports.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title" data-translate="inventory_reports">Inventory Reports</h1>
+        
+        <div class="back-button-container">
+            <a href="/" class="btn btn-primary" data-translate="back_to_management">Back to Management</a>
+        </div>
+
+        <!-- Language Selection -->
+        <section class="card">
+            <h2 class="section-title" data-translate="select_language">Select Language</h2>
+            <select id="language-select" class="form-control">
+                <option value="en" data-translate="lang_en">English</option>
+                <option value="pt" data-translate="lang_pt">Portuguese</option>
+            </select>
+        </section>
+
+        <!-- Report Selection -->
+        <section class="card">
+            <h2 class="section-title" data-translate="select_report_type">Select Report Type</h2>
+            <select id="report-type" class="form-control">
+                <option value="summary" data-translate="report_summary">Product Summary</option>
+                <option value="categories" data-translate="report_categories">Categories</option>
+                <option value="products" data-translate="report_products">Products</option>
+                <option value="movements" data-translate="report_movements">Stock Movements</option>
+            </select>
+        </section>
+
+        <!-- Filters -->
+        <section id="filters-container" class="card">
+            <h2 class="section-title" data-translate="filters">Filters</h2>
+            <div class="filters-grid">
+
+                <div>
+                    <label for="filter-category" data-translate="category">Category</label>
+                    <select id="filter-category" class="form-control">
+                        <option value="">All Categories</option>
+                    </select>
+                </div>
+
+                <div class="search-wrapper">
+                    <label for="filter-product-search" data-translate="product">Product</label>
+                    <input type="text" id="filter-product-search" class="form-control" placeholder="Search Product" data-placeholder="search_product">
+                    <input type="hidden" id="filter-product-id">
+                    <ul id="filter-product-results" class="search-results"></ul>
+                </div>
+
+                <div>
+                    <label for="from-date" data-translate="from_date">From Date</label>
+                    <input type="date" id="from-date" class="form-control">
+                </div>
+
+                <div>
+                    <label for="to-date" data-translate="to_date">To Date</label>
+                    <input type="date" id="to-date" class="form-control">
+                </div>
+
+            </div>
+
+            <div class="button-group">
+                <button id="apply-filters" class="btn btn-primary" data-translate="apply_filters">Apply Filters</button>
+                <button id="export-excel" class="btn btn-success" data-translate="export_to_excel">Export to Excel</button>
+            </div>
+        </section>
+
+        <!-- Report Containers -->
+        <section id="summary-container" class="card report-table-container hidden">
+            <h2 class="section-title" data-translate="report_summary">Product Summary</h2>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th data-translate="product_name">Product Name</th>
+                            <th data-translate="category">Category</th>
+                            <th data-translate="current_stock">Current Stock</th>
+                            <th data-translate="total_purchases">Total Purchases</th>
+                            <th data-translate="total_usage">Total Usage</th>
+                        </tr>
+                    </thead>
+                    <tbody id="summary-list"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="categories-container" class="card report-table-container hidden">
+            <h2 class="section-title" data-translate="report_categories">Categories</h2>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th data-translate="name">Name</th>
+                            <th data-translate="product_count">Product Count</th>
+                        </tr>
+                    </thead>
+                    <tbody id="categories-list"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="products-container" class="card report-table-container hidden">
+            <h2 class="section-title" data-translate="report_products">Products</h2>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th data-translate="name">Name</th>
+                            <th data-translate="category">Category</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-list"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="movements-container" class="card report-table-container hidden">
+            <h2 class="section-title" data-translate="report_movements">Stock Movements</h2>
+            <div class="table-wrapper tall">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th data-translate="product">Produto</th>
+                            <th>Ajuste Estoque</th>
+                            <th>Compra</th>
+                            <th>Saldo Atual</th>
+                        </tr>
+                    </thead>
+                    <tbody id="movements-list"></tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <script src="reports.js"></script>
+</body>
+</html>
